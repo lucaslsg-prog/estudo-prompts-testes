@@ -1,77 +1,79 @@
-# Casos de Teste de Integração
+# Casos de Teste de Integração - Tela de Login
 
-## CTI-001 - Login com Sucesso
+## CTI-001 - Login com Credenciais Válidas
+
+### Objetivo
+Validar a autenticação bem-sucedida de um usuário ativo.
+
+### Requisito Relacionado
+RF01, RF02, RF03
+
+### Componentes Envolvidos
+- Front-end
+- API de Autenticação
+- Banco de Dados
 
 ### Pré-condições
+- Usuário cadastrado e ativo.
+- Senha válida.
 
-Usuário ativo cadastrado.
+### Dados de Teste
+| Campo | Valor |
+|---------|---------|
+| E-mail | usuario@email.com |
+| Senha | Senha@123 |
 
 ### Passos
+1. Acessar a tela de login.
+2. Informar e-mail válido.
+3. Informar senha válida.
+4. Clicar em Entrar.
 
-1. Informar usuário válido.
-2. Informar senha válida.
-3. Clicar em Entrar.
+### Status HTTP Esperado
+`200 OK`
 
 ### Resultado Esperado
+- Front-end envia a requisição para a API.
+- API consulta o banco de dados.
+- Credenciais são validadas.
+- Token JWT é gerado.
+- Dados do usuário são retornados.
+- Sessão é criada.
 
-- Front-end envia requisição.
-- API consulta banco.
-- Banco retorna dados do usuário.
-- API retorna HTTP 200.
-- Token é gerado.
-- Usuário é redirecionado para Home.
+### Criticidade
+Alta
 
 ---
 
-## CTI-002 - Senha Inválida
+## CTI-002 - Login com Senha Inválida
+
+### Objetivo
+Validar a rejeição do login quando a senha estiver incorreta.
+
+### Requisito Relacionado
+RF02
+
+### Componentes Envolvidos
+- Front-end
+- API
+- Banco de Dados
 
 ### Pré-condições
+- Usuário existente.
 
-Usuário existente.
+### Dados de Teste
+| Campo | Valor |
+|---------|---------|
+| E-mail | usuario@email.com |
+| Senha | senhaErrada |
 
 ### Passos
-
 1. Informar usuário válido.
 2. Informar senha incorreta.
 3. Clicar em Entrar.
 
-### Resultado Esperado
-
-- API consulta banco.
-- Validação falha.
-- API retorna HTTP 401.
-- Mensagem de erro exibida.
-
----
-
-## CTI-003 - Campos Obrigatórios
-
-### Passos
-
-1. Deixar usuário vazio.
-2. Informar senha.
-3. Acionar login.
+### Status HTTP Esperado
+`401 Unauthorized`
 
 ### Resultado Esperado
-
-- Nenhuma requisição enviada para API.
-- Mensagem de validação exibida.
-
----
-
-## CTI-004 - Usuário Bloqueado
-
-### Pré-condições
-
-Usuário marcado como bloqueado na base.
-
-### Passos
-
-1. Informar credenciais válidas.
-2. Acionar login.
-
-### Resultado Esperado
-
-- API identifica bloqueio.
-- HTTP 403 retornado.
-- Acesso negado.
+- Usuário não autentic
